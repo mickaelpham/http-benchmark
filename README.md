@@ -9,7 +9,7 @@ languages.
 | Language | Requests/sec | Transfer/sec |
 | -------- | ------------ | ------------ |
 | Ruby     | 3,025.77     | 0.97MB       |
-| Go       | 86,952.30    | 13.64MB      |
+| Go       | 85,673.56    | 13.44MB      |
 | Java     | 106,226.41   | 12.81MB      |
 
 ## The Setup
@@ -92,15 +92,16 @@ go build app.go
 Collect the benchmark results:
 
 ```
+❯ wrk -t12 -c400 -d30s http://localhost:8001/franklin-says
 Running 30s test @ http://localhost:8001/franklin-says
   12 threads and 400 connections
   Thread Stats   Avg      Stdev     Max   +/- Stdev
-    Latency     2.74ms  418.48us  10.96ms   81.17%
-    Req/Sec     7.29k     3.32k   14.35k    63.15%
-  2617690 requests in 30.10s, 410.68MB read
-  Socket errors: connect 157, read 101, write 0, timeout 0
-Requests/sec:  86952.30
-Transfer/sec:     13.64MB
+    Latency     2.77ms  443.03us  10.75ms   81.90%
+    Req/Sec     7.20k     3.47k   80.14k    62.29%
+  2578764 requests in 30.10s, 404.58MB read
+  Socket errors: connect 157, read 100, write 0, timeout 0
+Requests/sec:  85673.56
+Transfer/sec:     13.44MB
 ```
 
 ### Java

@@ -22,9 +22,11 @@ func main() {
 		quotes = append(quotes, scanner.Text())
 	}
 
+	numQuotes := len(quotes)
+
 	http.HandleFunc("/franklin-says", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "text/plain")
-		fmt.Fprintf(w, "%s\n", quotes[rand.Intn(len(quotes))])
+		fmt.Fprintf(w, "%s\n", quotes[rand.Intn(numQuotes)])
 	})
 
 	log.Fatal(http.ListenAndServe(":8001", nil))
