@@ -23,6 +23,7 @@ func main() {
 	}
 
 	http.HandleFunc("/franklin-says", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "text/plain")
 		fmt.Fprintf(w, "%s\n", quotes[rand.Intn(len(quotes))])
 	})
 
