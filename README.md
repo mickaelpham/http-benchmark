@@ -6,11 +6,12 @@ languages.
 
 ## TL;DR
 
-| Language | Requests/sec | Transfer/sec |
-| -------- | ------------ | ------------ |
-| Ruby     | 3,857.18     | 747.73KB     |
-| Go       | 85,673.56    | 13.44MB      |
-| Java     | 106,226.41   | 12.81MB      |
+| Language | Framework                                        | Requests/sec | Transfer/sec |
+| -------- | ------------------------------------------------ | ------------ | ------------ |
+| Java     | [Vert.x](https://vertx.io/)                      | 106,226.41   | 12.81MB      |
+| Go       | [net/http](https://golang.org/pkg/net/http/)     | 85,673.56    | 13.44MB      |
+| Crystal  | [router.cr](https://github.com/tbrand/router.cr) | 58,458.47    | 8.45MB       |
+| Ruby     | [Sinatra](http://sinatrarb.com/)                 | 3,857.18     | 747.73KB     |
 
 ## The Setup
 
@@ -135,6 +136,31 @@ Running 30s test @ http://localhost:8080/franklin-says
   Socket errors: connect 157, read 200, write 0, timeout 0
 Requests/sec: 106226.41
 Transfer/sec:     12.81MB
+```
+
+### Crystal
+
+Install dependencies, compile and start the server:
+
+```
+cd crystal-sample
+shards install
+crystal app.cr
+```
+
+Collect the benchmark results:
+
+```
+❯ wrk -t12 -c400 -d30s http://localhost:8002/franklin-says
+Running 30s test @ http://localhost:8002/franklin-says
+  12 threads and 400 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     4.08ms  324.72us  13.65ms   89.59%
+    Req/Sec     5.35k     2.86k    9.35k    69.73%
+  1759658 requests in 30.10s, 254.24MB read
+  Socket errors: connect 157, read 98, write 0, timeout 0
+Requests/sec:  58458.47
+Transfer/sec:      8.45MB
 ```
 
 ## Note from the Author
